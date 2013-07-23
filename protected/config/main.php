@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 $config = array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'微笑MAX',
 	'defaultController'=>'site',
 
 	// preloading 'log' component

@@ -7,28 +7,42 @@
  */
 class UserIdentity extends CBaseUserIdentity
 {
-	public  $_id;
- 
-    public function authenticate()
-    {
-        $username=strtolower($this->username);
-        $user=User::model()->find('LOWER(username)=?',array($username));
-        if($user===null)
-            $this->errorCode=self::ERROR_USERNAME_INVALID;
-        else if(!$user->validatePassword($this->password))
-            $this->errorCode=self::ERROR_PASSWORD_INVALID;
-        else
-        {
-            $this->_id=$user->id;
-            $this->username=$user->username;
-            $this->errorCode=self::ERROR_NONE;
-        }
-        return $this->errorCode==self::ERROR_NONE;
-    }
- 
-    public function getId()
-    {
-        return $this->_id;
-    }
+	public $id;
+	public $passid;
+	public $name;
+	public $email;
+	public $password;
+
+	public function __construct($passid, $password)
+	{
+		$this->passid = strtolower($passid);
+		$this->password = $password;
+	}
+
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	public function getName()
+	{
+		return $this->name;
+	}
+
+	public function authenticate()
+	{
+		$user = User::model()->find('email = ? OR name = ?', array($this->passid, $this->passid));
+		if($user === null)
+			$this->errorCode = self::ERROR_USERNAME_INVALID;
+		else if(!$user->validatePassword($this->password))
+			$this->errorCode = self::ERROR_PASSWORD_INVALID;
+		else
+		{
+			$this->id = $user->id;
+			$this->name = $user->name;
+			$this->errorCode = self::ERROR_NONE;
+		}
+		return $this->errorCode == self::ERROR_NONE;
+	}
 
 }

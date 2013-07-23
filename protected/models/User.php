@@ -96,9 +96,23 @@ class User extends CActiveRecord
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('salt',$this->salt,true);
 		$criteria->compare('pwd',$this->pwd,true);
-
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	public function validatePassword($pwd)
+	{
+		return $this->pwd == $this->generatePassword($pwd);
+	}
+
+	public function generatePassword($pwd)
+	{
+		return md5($this->salt . md5($pwd) . $this->salt);
+	}
+
+	public function generateSalt()
+	{
+		
 	}
 }
