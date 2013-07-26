@@ -134,7 +134,6 @@ function isInArray(val, arr){
 	return testStr.indexOf(',' + val + ',') != -1;
 }
 
-
 function utf8strlen(str){
 	str = str.replace(/[^\u00-\uff]/g, '**');
 	return str.length;

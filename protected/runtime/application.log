@@ -713,3 +713,70 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/favicon.ico
 ---
+2013/07/24 05:50:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\wamp\www\tongxuelu\protected\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\wamp\www\tongxuelu\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2013/07/24 05:52:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\wamp\www\tongxuelu\protected\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\wamp\www\tongxuelu\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2013/07/24 05:59:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\wamp\www\tongxuelu\protected\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\wamp\www\tongxuelu\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2013/07/26 04:08:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\wamp\www\tongxuelu\protected\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\wamp\www\tongxuelu\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2013/07/26 04:08:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\wamp\www\tongxuelu\protected\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\wamp\www\tongxuelu\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2013/07/26 09:30:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\wamp\www\tongxuelu\protected\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\wamp\www\tongxuelu\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2013/07/26 09:31:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\wamp\www\tongxuelu\protected\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\wamp\www\tongxuelu\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2013/07/26 09:48:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "js".' in C:\wamp\www\tongxuelu\protected\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\tongxuelu\protected\yii\framework\web\CController.php(270): CController->missingAction('js')
+#1 C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php(282): CController->run('js')
+#2 C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('passport/js/val...')
+#3 C:\wamp\www\tongxuelu\protected\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\wamp\www\tongxuelu\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/passport/js/validate.js
+HTTP_REFERER=http://tongxuelu.org/passport/register
+---

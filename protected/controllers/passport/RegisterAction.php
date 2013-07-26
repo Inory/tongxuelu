@@ -6,7 +6,7 @@ class RegisterAction extends Action
 		if(isset($_POST['action']) && $_POST['action'] === 'checkEmail')
 		{
 			$user = User::model()->find('email = ?', array($_POST['email']));
-			if($user === null)
+			if($user !== null)
 			{
 				$this->returnSimpleErrorJson();
 			}
