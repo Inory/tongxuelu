@@ -780,3 +780,29 @@ Stack trace:
 REQUEST_URI=/passport/js/validate.js
 HTTP_REFERER=http://tongxuelu.org/passport/register
 ---
+2013/07/29 05:54:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\wamp\www\tongxuelu\protected\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\wamp\www\tongxuelu\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2013/07/30 08:06:41 [warning] [application] Failed to set unsafe attribute "password1" of "User".
+in C:\wamp\www\tongxuelu\protected\controllers\passport\RegisterAction.php (23)
+in C:\wamp\www\tongxuelu\index.php (13)
+2013/07/30 08:06:41 [warning] [application] Failed to set unsafe attribute "password2" of "User".
+in C:\wamp\www\tongxuelu\protected\controllers\passport\RegisterAction.php (23)
+in C:\wamp\www\tongxuelu\index.php (13)
+2013/07/30 08:07:40 [warning] [application] Failed to set unsafe attribute "password1" of "User".
+in C:\wamp\www\tongxuelu\protected\controllers\passport\RegisterAction.php (23)
+in C:\wamp\www\tongxuelu\index.php (13)
+2013/07/30 08:07:40 [warning] [application] Failed to set unsafe attribute "password2" of "User".
+in C:\wamp\www\tongxuelu\protected\controllers\passport\RegisterAction.php (23)
+in C:\wamp\www\tongxuelu\index.php (13)
+2013/07/30 08:10:07 [warning] [application] Failed to set unsafe attribute "password1" of "User".
+in C:\wamp\www\tongxuelu\protected\controllers\passport\RegisterAction.php (23)
+in C:\wamp\www\tongxuelu\index.php (13)
+2013/07/30 08:10:07 [warning] [application] Failed to set unsafe attribute "password2" of "User".
+in C:\wamp\www\tongxuelu\protected\controllers\passport\RegisterAction.php (23)
+in C:\wamp\www\tongxuelu\index.php (13)

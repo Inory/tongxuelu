@@ -19,7 +19,16 @@ class RegisterAction extends Action
 		$model = new User;
 		if(isset($_POST['user']))
 		{
-			
+			$user = User::model()->find('email = ?', array($_POST['email']));
+			if(!is_null($user))
+			{
+				$this->controller->render(
+					'//error',
+					array('model' => $model)
+				);
+				Yii::app()->end();
+			}
+
 			$model->attributes = $_POST['user'];
 			$model->save();
 

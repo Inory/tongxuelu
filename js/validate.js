@@ -1,14 +1,21 @@
 function validateEmail(email){
 	var patt = new RegExp('^([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\.][a-zA-Z]{2,3}([\.][a-zA-Z]{2})?$');
-	if(!email || patt.test(email))
+	if(email && patt.test(email))
 		return 0;
 	else
 		return 1;
 }
 
-function validatePwd(pwd)
-{
+function validatePwd(pwd){
+	if(strlen(pwd) < 8)
+		return 1;
+	else if(strlen(pwd) > 24)
+		return 2;
+	return 0;
+}
 
+function evaluatePwd(){
+	return word.replace(/^(?:([a-z])|([A-Z])|([0-9])|(.)){5,}|(.)+$/g, "$1$2$3$4$5");
 }
 
 function validateQq(qq){
