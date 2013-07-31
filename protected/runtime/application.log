@@ -781,6 +781,7 @@ REQUEST_URI=/passport/js/validate.js
 HTTP_REFERER=http://tongxuelu.org/passport/register
 ---
 <<<<<<< HEAD
+<<<<<<< HEAD
 2013/07/29 05:54:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php:286
 Stack trace:
 #0 C:\wamp\www\tongxuelu\protected\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
@@ -808,6 +809,8 @@ in C:\wamp\www\tongxuelu\index.php (13)
 in C:\wamp\www\tongxuelu\protected\controllers\passport\RegisterAction.php (23)
 in C:\wamp\www\tongxuelu\index.php (13)
 =======
+=======
+>>>>>>> 1bdbae7eefe8ae19ae01f1806f31bd9f592b700a
 2013/07/30 15:03:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in D:\Documents\GitHub\tongxuelu\protected\yii\framework\web\CWebApplication.php:286
 Stack trace:
 #0 D:\Documents\GitHub\tongxuelu\protected\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
@@ -927,4 +930,7 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/favicon.ico
 ---
+<<<<<<< HEAD
+>>>>>>> 1bdbae7eefe8ae19ae01f1806f31bd9f592b700a
+=======
 >>>>>>> 1bdbae7eefe8ae19ae01f1806f31bd9f592b700a
