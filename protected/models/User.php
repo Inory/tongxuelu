@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'user':
  * @property string $id
- * @property string $name
+ * @property string $nickname
  * @property string $email
  * @property string $salt
  * @property string $pwd
@@ -39,17 +39,11 @@ class User extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
-			array('name, email, salt, pwd', 'required'),
-			array('name', 'length', 'max'=>30),
+			array('mobile_phone, nickname, email, salt, pwd', 'required'),
+			array('mobile_phone', 'length', 'max'=>12),
+			array('nickname', 'length', 'max'=>30),
 			array('email', 'length', 'max'=>128),
-			array('salt', 'length', 'max'=>6),
-			array('pwd', 'length', 'max'=>32),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, name, email, salt, pwd', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,8 +52,6 @@ class User extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 			'classes' => array(self::MANY_MANY, 'Class', 'classmate(uid, cid)'),
 			'userProfile' => array(self::HAS_ONE, 'UserProfile', 'uid'),
@@ -72,38 +64,14 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'email' => 'Email',
-			'salt' => 'Salt',
-			'pwd' => 'Pwd',
+			'nickname' => '昵称',
+			'email' => '邮箱',
 		);
-	}
-
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('email',$this->email,true);
-		$criteria->compare('salt',$this->salt,true);
-		$criteria->compare('pwd',$this->pwd,true);
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
 	}
 
 	public function validatePassword($pwd)
 	{
-		return $this->pwd == $this->generatePassword($pwd);
+		return $this->password === $this->generatePassword($pwd);
 	}
 
 	public function generatePassword($pwd)
@@ -111,8 +79,13 @@ class User extends CActiveRecord
 		return md5($this->salt . md5($pwd) . $this->salt);
 	}
 
-	public function generateSalt()
+	public function register()
 	{
-		
+
+	}
+
+	public static function get($id)
+	{
+		return self::model()->find('id = ?',array($id));
 	}
 }

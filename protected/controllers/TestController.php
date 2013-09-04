@@ -11,5 +11,7 @@ class TestController extends Controller
 	public function actionTa()
 	{
 		echo 't action';
+		var_dump(Yii::app()->user);
+		var_dump(ErrorCode::NONE);
 	}
 }

@@ -17,11 +17,20 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 	<input type="submit" />
 
 </form>
-
+<a id="sina" href="/passport/thirdpartylogin?source=sina">sina login</a>
 <script type="text/javascript">
 // event
 $(function(){
-
+	// third party login
+	$("#sina").click(function(event){
+	    event.preventDefault();
+	    var width = 680;
+	    if(this.id == 'alipay_login'){
+	        width = 960;
+	    }
+	    var w = window.open(this.href, this.id, "width=" + width + ",height=500,menubar=0,scrollbars=1,resizable=1,status=1,titlebar=0,toolbar=0,location=1");
+	    w.focus();
+	});
 });
 
 // job

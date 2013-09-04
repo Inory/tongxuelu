@@ -8,7 +8,7 @@
 $config = array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'微笑MAX',
-	'defaultController'=>'site',
+	'defaultController'=>'index',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -17,6 +17,8 @@ $config = array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'application.helpers.*',
+		'application.extensions.*',
 	),
 
 	'modules'=>array(
@@ -36,8 +38,15 @@ $config = array(
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
+			'loginUrl'=>array('/passport/login'),
 		),
-		// uncomment the following to enable URLs in path-format
+
+		'session'=>array(
+			'autoStart'=>true,
+			'sessionName'=>'User',
+			'cookieMode'=>'only',
+			//'savePath'=>'/path/to/new/directory',
+		),
 		
 		'urlManager'=>array(
 			'showScriptName'=>false,
@@ -53,6 +62,7 @@ $config = array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
 		),
+
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(

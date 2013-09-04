@@ -5,17 +5,17 @@
  * It contains the authentication method that checks if the provided
  * data can identity the user.
  */
-class UserIdentity extends CBaseUserIdentity
+class UserIdentity extends CUserIdentity
 {
 	public $id;
-	public $passid;
-	public $name;
-	public $email;
-	public $password;
+	public $nickname;
 
-	public function __construct($passid, $password)
+	public $loginIdentity;
+	public $password;
+	
+	public function __construct($loginIdentity = '', $password = '')
 	{
-		$this->passid = strtolower($passid);
+		$this->loginIdentity = strtolower($loginIdentity);
 		$this->password = $password;
 	}
 
@@ -26,23 +26,23 @@ class UserIdentity extends CBaseUserIdentity
 
 	public function getName()
 	{
-		return $this->name;
+		return $this->nickname;
 	}
 
 	public function authenticate()
 	{
-		$user = User::model()->find('email = ? OR name = ?', array($this->passid, $this->passid));
+		$user = User::model()->find('email = ? OR mobile_phone = ?', array($this->loginIdentity, $this->loginIdentity));
 		if($user === null)
-			$this->errorCode = self::ERROR_USERNAME_INVALID;
+			$this->errorCode = ErrorCode::USER_NOT_EXIST;
 		else if(!$user->validatePassword($this->password))
-			$this->errorCode = self::ERROR_PASSWORD_INVALID;
+			$this->errorCode = ErrorCode::PASSWORD_INVALID;
 		else
 		{
 			$this->id = $user->id;
-			$this->name = $user->name;
-			$this->errorCode = self::ERROR_NONE;
+			$this->nickname = $user->nickname;
+			$this->errorCode = ErrorCode::NONE;
 		}
-		return $this->errorCode == self::ERROR_NONE;
+		return $this->errorCode == ErrorCode::NONE;
 	}
 
 }
