@@ -4,7 +4,6 @@ class PassportController extends Controller
 	public function actions()
 	{
 		return array(
-			'login'=>'application.controllers.passport.LoginAction',
 			'loginhandler'=>'application.controllers.passport.loginhandlerAction',
 
 			'thirdpartylogin'=>'application.controllers.passport.ThirdpartyloginAction',
@@ -27,21 +26,34 @@ class PassportController extends Controller
 				'actions'=>array('login','loginhandler','thirdpartylogin','callback','register','registerhandler'),
 				'users'=>array('?'), // only alow guest
 			),
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('logout'),
 				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
 		);
+	}
+
+	/**
+	 * @return array action filters
+	 */
+	public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+		);
+	}
+
+	public function actionLogin()
+	{
+		$this->render('login');
+	}
+
+	public function actionLogout()
+	{
+		Yii::app()->user->logout();
+		$this->redirect(Yii::app()->homeUrl);
 	}
 }

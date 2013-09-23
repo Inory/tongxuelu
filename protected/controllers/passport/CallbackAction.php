@@ -28,7 +28,7 @@ class CallbackAction extends CAction
 		$oauth->setData('code', $authCode); // 设置 authcode
 		if (!$oauth->getAccessToken() || !$oauth->getTokenInfo() || !$oauth->getUserInfo()) // get user info
 		{
-			// Kaori_Response::redirect('出错了，请稍候重试！');
+			$this->redirect(array('//'));
 			echo "Oauth err : \n";
 			$oauth->debug('ErrMsg');
 		}

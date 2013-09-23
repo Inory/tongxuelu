@@ -8,7 +8,7 @@
 $config = array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'微笑MAX',
-	'defaultController'=>'index',
+	'defaultController'=>'site',
 
 	// preloading 'log' component
 	'preload'=>array('log'),

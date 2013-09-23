@@ -14,15 +14,15 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 	密码 <br />
 	<input type="password" size="26" /> <br />
 
-	<input type="submit" />
+	<input type="submit" value="登录" />
 
 </form>
-<a id="sina" href="/passport/thirdpartylogin?source=sina">sina login</a>
+<a class="btn_tpl" id="sina_tpl" href="/passport/thirdpartylogin?source=sina">sina login</a>
 <script type="text/javascript">
 // event
 $(function(){
 	// third party login
-	$("#sina").click(function(event){
+	$("a.btn_tpl").click(function(event){
 	    event.preventDefault();
 	    var width = 680;
 	    if(this.id == 'alipay_login'){

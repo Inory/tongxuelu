@@ -12,6 +12,5 @@ class TestController extends Controller
 	{
 		echo 't action';
 		var_dump(Yii::app()->user);
-		var_dump(ErrorCode::NONE);
 	}
 }
