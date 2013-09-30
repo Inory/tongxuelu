@@ -2,10 +2,6 @@
 /**
  * Abstract Oauth Class
  * 
- * 数据分区存放，并且预定义，让类结构清晰
- * 分区是一个array，不论存放的是标量还是对象或是数组
- * 存取时，都只能取到$this->area['key']这一级，这样做是为了耦合关系清晰可见
- * 
  * @author Lynn Lee
  */
 abstract class Oauth

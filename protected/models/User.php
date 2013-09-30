@@ -40,8 +40,8 @@ class User extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('mobile_phone, nickname, email, salt, pwd', 'required'),
-			array('mobile_phone', 'length', 'max'=>12),
+			array('nickname, email', 'required'),
+			array('mobile_phone', 'length', 'min'=>12,'max'=>12),
 			array('nickname', 'length', 'max'=>30),
 			array('email', 'length', 'max'=>128),
 		);
@@ -77,11 +77,6 @@ class User extends CActiveRecord
 	public function generatePassword($pwd)
 	{
 		return md5($this->salt . md5($pwd) . $this->salt);
-	}
-
-	public function register()
-	{
-
 	}
 
 	public static function get($id)

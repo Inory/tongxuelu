@@ -8,7 +8,7 @@ class Kaori_Response
 		die();
 	}
 
-	public static function rediret($url = '/')
+	public static function redirect($url = '/')
 	{
 		header('HTTP/1.1 302 Moved Temporarily');
 		header('Location: ' . $url);

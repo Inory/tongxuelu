@@ -3,10 +3,9 @@ class CallbackAction extends CAction
 {
 	public function run()
 	{
-		session_start();
-		if($_SESSION['next'] != 'success')
+		if(Kaori_Session::get('next') != 'success')
 		{
-			Kaori_Response::redirect('Denied!');
+			Kaori_Response::redirect('/');
 		}
 
 		if(isset($_GET['error']))
@@ -14,35 +13,36 @@ class CallbackAction extends CAction
 			Kaori_Response::backToParentWindow('no_refresh');
 		}
 
-		Kaori_Session::setSession('next', null); // clear session
+		Kaori_Session::set('next', null); // clear session
 			
 //		$state = $this->getRequest()->getParam('state');
 		$authCode = $_GET['code'];
 		if (!$authCode)
 		{
-			Kaori_Response::redirect('出错了，请稍候重试！');
+			Kaori_Response::redirect('/');
 		}
 
-		$oauth = new Sina; // load sina model
+		$source = ucfirst(Kaori_Session::get('source'));
+		$oauth = new $source; // load sina model
 
 		$oauth->setData('code', $authCode); // 设置 authcode
 		if (!$oauth->getAccessToken() || !$oauth->getTokenInfo() || !$oauth->getUserInfo()) // get user info
 		{
-			$this->redirect(array('//'));
+			// Kaori_Response::redirect('/');
 			echo "Oauth err : \n";
 			$oauth->debug('ErrMsg');
 		}
 		$tpu = $this->getTpu($oauth->getUser('uid')); // load third party user model
-		$uid = $this->getUid($tpu);
+		
 		if ($tpu) // registered -> login
 		{
-			$uid = $tpu->uid; // get uid
+			$uid = $this->getUid($tpu); // get uid
 			$this->login($uid);
 			Kaori_Response::backToLastPage();
 		}
 		else // not registered -> register
 		{
-			Kaori_Session::setSession('tpu', array('uid' => $oauth->getUser('uid'), 'name' => $oauth->getUser('name'), 'source' => 'sina'));
+			$this->register(array('oid' => $oauth->getUser('uid'), 'name' => $oauth->getUser('name'), 'source' => $source));
 		}
 	}
 
@@ -53,7 +53,7 @@ class CallbackAction extends CAction
 
 	protected function getUid($tpu)
 	{
-		return isset($tpu->uid);
+		return $tpu->uid;
 	}
 
 	protected function login($uid)
@@ -65,38 +65,46 @@ class CallbackAction extends CAction
 		return Yii::app()->user->login($ui);
 	}
 
-	protected function register()
+	protected function register($tpuData)
 	{
+		$time = date('Y-m-d H-m-s', time());
 
-		$tpuModel = $this->tpu;
-		$userModel = $this->user;
-
-		$tpu = Kaori_Session::getSession('tpu');
-		if($tpuModel->isExist($tpu['uid'])) // Is tpu existed?
+		try
 		{
-			echo 'Tpu already existed!';
-			return;
+			$transaction= Yii::app()->db->beginTransaction();//创建事务
+	
+			// create new user 
+			$user = new User;
+			$user->nickname = $tpuData['name'];
+			$user->email = Kaori_String::createUniqKey() . '@' . $tpuData['source'] . '.inory.org';
+			$user->create_time = $time;
+			if(!$user->save())
+				throw new Exception('user save err!');
+
+			// create new tpu
+			$tpu = new ThirdPartyUser;
+			$tpu->oid = $tpuData['oid'];
+			$tpu->source = $tpuData['source'];
+			$tpu->uid = $user->id;
+			$tpu->create_time = $time;
+			if(!$tpu->save())
+				throw new Exception('tpu save err!');
+
+			$transaction->commit();//提交事务
+		}
+		catch(Exception $e)
+		{
+			$transaction->rollback();
+			echo $e->getMessage();
+			Yii::app()->end();
 		}
 
-		// create new user new tpu
-		// $email = Kaori_String::createUniqKey() . '@' . $source . '.inory.org';
-		$password = Kaori_String::createUniqKey();
-		$name = $tpu['name'];
-		$source = $tpu['source'];
-		$uid = $tpu['uid'];
-		$pid = $userModel->create(array('name'=>$name,'password'=>$password));
-		$tpuModel->create(array('uid'=>$uid,'pid'=>$pid,'source'=>$source));
-
 		// login
-		Kaori_Session::setSession('pid', $pid);
-		Kaori_Session::setSession('name', $name);
+		$this->login($user->id);
 
-		Kaori_Session::setSession('next', null); // clear session
+		Kaori_Session::del('next'); // clear session
 
-		$data = Kaori_Aes::authcode(json_encode(array('pid'=>$pid,'uid'=>$uid,'name'=>$name,'source'=>$source)), 'ENCODE', Kaori_Aes::key, 60);
-
-		// back
-		echo Kaori_Response::backToParentWindow($data);
+		Kaori_Response::backToLastPage();
 	}
 
 }

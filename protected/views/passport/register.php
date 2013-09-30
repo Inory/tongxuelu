@@ -54,7 +54,7 @@ $(function(){
 			type : 'POST',
 			dataType : 'json',
 			success : function(data){
-				if(data.c == 0){
+				if(data.code == 0){
 					$evm.html('恭喜，该邮箱未被注册。');
 					$evs.val(0);
 				}

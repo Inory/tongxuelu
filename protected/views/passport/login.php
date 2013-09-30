@@ -18,6 +18,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 
 </form>
 <a class="btn_tpl" id="sina_tpl" href="/passport/thirdpartylogin?source=sina">sina login</a>
+<a class="btn_tpl" id="sina_tpl" href="/passport/thirdpartylogin?source=qq">qq login</a>
 <script type="text/javascript">
 // event
 $(function(){

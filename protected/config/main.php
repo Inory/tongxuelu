@@ -43,7 +43,7 @@ $config = array(
 
 		'session'=>array(
 			'autoStart'=>true,
-			'sessionName'=>'User',
+			'sessionName'=>'SESSION',
 			'cookieMode'=>'only',
 			//'savePath'=>'/path/to/new/directory',
 		),
@@ -84,7 +84,7 @@ $config = array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'admin@inory.org',
 	),
 );
 

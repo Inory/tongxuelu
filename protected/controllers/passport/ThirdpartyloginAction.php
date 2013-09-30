@@ -3,10 +3,9 @@ class ThirdpartyloginAction extends CAction
 {
 	public function run($source)
 	{
-		session_start();
 		switch ($source) {
 			case 'sina' : $this->sina();break;
-			case 'tencent' : $this->tencent();break;
+			case 'qq' : $this->tencent();break;
 			default:
 				break;
 		}
@@ -15,13 +14,18 @@ class ThirdpartyloginAction extends CAction
 	protected function sina()
 	{
 		$sina = new Sina();
-		$_SESSION['next'] = 'success';
+		Kaori_Session::set('next', 'success');
+		Kaori_Session::set('source', 'sina');
 		$body = $sina->buildGetAuthCodeHtml();
 		echo $body;
 	}
 
 	protected function tencent()
 	{
-
+		$tencent = new Tencent();
+		Kaori_Session::set('next', 'success');
+		Kaori_Session::set('source', 'tencent');
+		$body = $tencent->buildGetAuthCodeHtml();
+		echo $body;
 	}
 }

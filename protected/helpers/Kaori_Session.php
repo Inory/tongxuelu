@@ -1,15 +1,20 @@
 <?php
 class Kaori_Session
 {
-	public static function getSession($key)
+	public static function get($key)
 	{
-		if(!isset($_SESSION[$key]))
+		if(!isset(Yii::app()->session[$key]))
 			return false;
-		return $_SESSION[$key];
+		return Yii::app()->session[$key];
 	}
 
-	public static function setSession($key, $value)
+	public static function set($key, $value)
 	{
-		$_SESSION[$key] = $value;
+		Yii::app()->session[$key] = $value;
+	}
+
+	public static function del($key)
+	{
+		unset(Yii::app()->session[$key]);
 	}
 }
